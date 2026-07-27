@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_visit_form_user,crm.visit.form user,model_crm_visit_form,base.group_user,1,1,1,1
+access_crm_visit_rapid_test_line_user,crm.visit.rapid.test.line user,model_crm_visit_rapid_test_line,base.group_user,1,1,1,1
+access_crm_visit_ubt_line_user,crm.visit.ubt.line user,model_crm_visit_ubt_line,base.group_user,1,1,1,1
+access_crm_visit_clia_line_user,crm.visit.clia.line user,model_crm_visit_clia_line,base.group_user,1,1,1,1
+access_crm_visit_elisa_line_user,crm.visit.elisa.line user,model_crm_visit_elisa_line,base.group_user,1,1,1,1
+access_crm_visit_consumables_line_user,crm.visit.consumables.line user,model_crm_visit_consumables_line,base.group_user,1,1,1,1
+access_crm_visit_poct_line_user,crm.visit.poct.line user,model_crm_visit_poct_line,base.group_user,1,1,1,1

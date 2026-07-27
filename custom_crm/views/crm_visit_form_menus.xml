@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem
+        id="menu_crm_visit_form"
+        name="Visit Forms"
+        parent="crm.crm_menu_root"
+        action="action_crm_visit_form"
+        sequence="60"
+    />
+</odoo>
