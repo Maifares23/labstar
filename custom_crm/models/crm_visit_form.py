@@ -51,7 +51,6 @@ class CrmVisitForm(models.Model):
     contact_person = fields.Char(string="Contact Person", tracking=True)
     contact_number = fields.Char(string="Contact Number", tracking=True)
     email_address = fields.Char(string="Mail Address", tracking=True)
-    note = fields.Char( tracking=True)
 
     rapid_test_line_ids = fields.One2many(
         comodel_name="crm.visit.rapid.test.line",
@@ -159,6 +158,8 @@ class CrmVisitLineBase(models.AbstractModel):
         store=True,
         readonly=True,
     )
+    note = fields.Char( tracking=True)
+
 
     @api.constrains("price")
     def _check_price(self):
@@ -178,6 +179,8 @@ class CrmVisitQuantityLineBase(models.AbstractModel):
         default=1.0,
         digits=(16, 2),
     )
+    note = fields.Char( tracking=True)
+
 
     @api.constrains("qty")
     def _check_quantity(self):

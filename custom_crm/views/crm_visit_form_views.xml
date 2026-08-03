@@ -69,7 +69,6 @@
                             <field name="contact_person"/>
                             <field name="contact_number" widget="phone"/>
                             <field name="email_address" widget="email"/>
-                            <field name="note" />
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                     </group>
@@ -93,6 +92,8 @@
                                 <field name="qty"/>
                                 <field name="price"/>
                                 <field name="currency_id" column_invisible="True"/>
+                                                            <field name="note" />
+
                             </list>
                         </field>
                     </group>
@@ -105,6 +106,8 @@
                                 <field name="current_supplier_id"/>
                                 <field name="price"/>
                                 <field name="currency_id" column_invisible="True"/>
+                                                            <field name="note" />
+
                             </list>
                         </field>
                     </group>
@@ -118,6 +121,8 @@
                                 <field name="qty"/>
                                 <field name="price"/>
                                 <field name="currency_id" column_invisible="True"/>
+                                                            <field name="note" />
+
                             </list>
                         </field>
                     </group>
@@ -130,6 +135,8 @@
                                 <field name="current_supplier_id"/>
                                 <field name="price"/>
                                 <field name="currency_id" column_invisible="True"/>
+                                                            <field name="note" />
+
                             </list>
                         </field>
                     </group>
@@ -143,6 +150,8 @@
                                 <field name="qty"/>
                                 <field name="price"/>
                                 <field name="currency_id" column_invisible="True"/>
+                                                            <field name="note" />
+
                             </list>
                         </field>
                     </group>
@@ -156,6 +165,8 @@
                                 <field name="qty"/>
                                 <field name="price"/>
                                 <field name="currency_id" column_invisible="True"/>
+                                                            <field name="note" />
+
                             </list>
                         </field>
                     </group>
