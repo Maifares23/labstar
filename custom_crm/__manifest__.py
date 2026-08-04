@@ -4,7 +4,7 @@
     "summary": "CRM visit forms with dedicated item models per visit type",
     "version": "19.0.1.1.0",
     "category": "Sales/CRM",
-    "author": "Custom",
+    "author": "Ahmed Ali",
     "license": "LGPL-3",
     "depends": ["crm", "mail"],
     "data": [
@@ -12,6 +12,7 @@
         "data/ir_sequence_data.xml",
         "views/crm_visit_form_views.xml",
         "views/crm_visit_form_menus.xml",
+        "views/crm.xml",
     ],
     "installable": True,
     "application": False,
