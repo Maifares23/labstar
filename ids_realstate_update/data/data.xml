@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.cron" id="auto_posted_contract_invoice">
+            <field name="name">Auto Posted Contract Invoice</field>
+            <field name="model_id" ref="model_rental_contract"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_posted_contract_invoice()</field>
+            <field name="active" eval="True"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+        </record>
+
+        <record id="action_server_onchange" model="ir.actions.server">
+            <field name="name">Set Contract Data</field>
+            <field name="model_id" ref="nthub_realestate.model_rental_contract"/>
+            <field name="binding_model_id" ref="nthub_realestate.model_rental_contract"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">action = records._cron_set_data()</field>
+        </record>
+        <record id="action_sever_confirm" model="ir.actions.server">
+            <field name="name">Confirm Contract</field>
+            <field name="model_id" ref="nthub_realestate.model_rental_contract"/>
+            <field name="binding_model_id" ref="nthub_realestate.model_rental_contract"/>
+            <field name="groups_id" eval="[(4, ref('ids_realstate_update.confirm_contracts_group'))]"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">action = records._action_server_confirm()</field>
+        </record>
+        <record id="seq_contract_downpayment" model="ir.sequence">
+            <field name="name">Contract Down Payment</field>
+            <field name="code">contract.down.payment</field>
+            <field name="prefix">CDP</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_contracts_statements_wizard,contracts_statements_wizard,model_contracts_statements_wizard,base.group_user,1,1,1,1
+access_project_deductions_wizard,project_deductions_wizard,model_project_deductions_wizard,base.group_user,1,1,1,1
+access_project_tracking_wizard,project_tracking_wizard,model_project_tracking_wizard,base.group_user,1,1,1,1

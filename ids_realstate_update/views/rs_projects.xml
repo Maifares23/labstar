@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="rs_project_form_inh" model="ir.ui.view">
+            <field name="name">rs.project.form.inh</field>
+            <field name="model">rs.project</field>
+            <field name="inherit_id" ref="nthub_realestate.rs_project_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='code']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='no_of_floors']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='props_per_floor']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='purchase_date']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='launching_date']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='region']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='land_area']" position="after">
+                    <field name="gross_area"/>
+                    <field name="check_number"/>
+                    <field name="check_type"/>
+                    <field name="issuer"/>
+                    <field name="issue_place"/>
+                    <field name="title_deed_no"/>
+                </xpath>
+                <xpath expr="//field[@name='west']" position="after">
+                    <field name="parking_lots_number"/>
+                    <field name="elevators_number"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

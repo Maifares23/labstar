@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="contract_invoice_tree_view_id" model="ir.ui.view">
+            <field name="name">contract.invoice.tree.view</field>
+            <field name="model">contract.invoice</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                    <field name="project_id"/>
+                    <field name="code"/>
+                    <field name="subcontractor_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="stage_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="contract_invoice_form_view_id" model="ir.ui.view">
+            <field name="name">contract.invoice.form.view</field>
+            <field name="model">contract.invoice</field>
+            <field name="arch" type="xml">
+                <form string="Invoice" name="invoice">
+
+                    <header>
+                        <button string="Confirm" class="oe_highlight" name="action_confirm"  invisible="is_hide_confirm != False"
+                                type="object"/>
+                        <field name="stage_id" widget="statusbar" options="{'clickable': '0'}"/>
+                        <field name="state" invisible="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Invoice Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="is_hide_confirm" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="contract_project_id" invisible="0"/>
+                                <field name="count_confirm" force_save="1" readonly="1" invisible="0"/>
+                                <field name="subcontractor_id" invisible="1"/>
+                                <field name="project_id" invisible="1"/>
+                                <field name="code" invisible="1"/>
+                                <field name="code" readonly="is_hide_confirm != False"/>
+                                <field name="workflow_id" force_save="1"
+                                       readonly="is_hide_confirm != False"/>
+                                <field name="date_confirm_stage" invisible="1"/>
+                                <field name="due_days" invisible="1"/>
+                                <field name="num_days" invisible="1"/>
+
+                            </group>
+                            <group>
+                                <label for="date_from" string="Invoice Period"/>
+                                <div class="w-100">
+                                    <div class="o_row">
+                                        <field name="date_from" widget="daterange"
+                                               options="{'related_end_date': 'date_to'}"
+                                               readonly="is_hide_confirm != False"/>
+                                        <i class="fa fa-long-arrow-right mx-2 oe_edit_only" aria-label="Arrow icon"
+                                           title="Arrow"/>
+
+                                        <field name="date_to" widget="daterange"
+                                               options="{'related_start_date': 'date_from'}"
+                                               readonly="is_hide_confirm != False"/>
+                                    </div>
+                                </div>
+
+                                <field name="check_final_invoice" />
+
+                            </group>
+                        </group>
+                        <group name="contract_information" string="A.Contract Information">
+                            <field name="original_contract_amount"/>
+                            <label for="advanced_payment_percentage"/>
+                            <div class="d-flex">
+                                <field name="advanced_payment_percentage" style="width:40%"
+                                       readonly="is_hide_confirm != False"/>
+                                <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Amount</span>
+                                <field name="contract_advanced_payment" readonly="1" style="width:40%" force_save="1"/>
+                            </div>
+                            <!--                            <field name="contract_advanced_payment"/>-->
+                            <field name="change_orders_amount"/>
+                            <field name="total_contract_amount_after_change_order"/>
+
+                        </group>
+                        <group name="progress_information" string="B.Information Information">
+                            <field name="accumulative_gross_amount_to_date"/>
+
+
+                        </group>
+                        <group name="liabilities" string="C.Liabilities">
+                            <field name="total_backlog_deduction_amount"/>
+                            <field name="prepaid_advanced_payment"/>
+
+
+                        </group>
+                        <group name="deduction" string="D.Deduction">
+                            <field name="cumulative_advanced_payment"/>
+                            <field name="site_deductions"/>
+                            <field name="total_deductions"/>
+
+
+                        </group>
+                        <group name="invoice_amount" string="E.Invoice Amount">
+                            <field name="cumulative_net_amount"/>
+                            <field name="previous_net_amount" invisible="1"/>
+                            <field name="current_net_amount" invisible="1"/>
+                            <field name="cumulative_retention"/>
+                            <field name="contract_advanced_payment_adjustment"/>
+                            <field name="previous_outstanding_payment"/>
+                            <field name="outstanding_payment_for_this_period"/>
+
+
+                        </group>
+                        <notebook>
+                            <page name="items" string="Items">
+                                <field name="contract_invoice_ids" widget="section_and_note_one2many"
+                                       context="{'default_company_id': company_id, 'default_currency_id': currency_id}"
+                                       readonly="is_hide_confirm != False">
+
+                                    <list editable="bottom">
+                                        <control>
+                                            <create name="add_line_control" string="Add a line"/>
+                                            <create name="add_section_control" string="Add a section"
+                                                    context="{'default_display_type': 'line_section'}"/>
+                                            <create name="add_note_control" string="Add a note"
+                                                    context="{'default_display_type': 'line_note'}"/>
+                                        </control>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="display_type" invisible="1"/>
+                                        <field name="count_confirm"/>
+                                        <field name="id"/>
+                                        <field name="item_id"/>
+                                        <field name="name"/>
+                                        <field name="work_type"/>
+                                        <field name="work_package_id"/>
+                                        <field name="quantity" sum="Total"/>
+                                        <field name="unit_price" sum="Total"/>
+                                        <field name="uom_id"/>
+                                        <field name="tax_ids" widget="many2many_tags"/>
+                                        <field name="untaxed_amount" sum="Total" optional="show"/>
+                                        <field name="amount_tax" sum="Total" invisible="1"/>
+                                        <field name="total_amount" sum="Total" invisible="1"/>
+                                        <field name="previous_progress" sum="Total" invisible="0" optional="show"/>
+                                        <field name="previous_qty" sum="Total" invisible="0" optional="show"/>
+                                        <field name="previous_amount" sum="Total" invisible="0" optional="show"/>
+                                        <field name="current_progress" sum="Total" invisible="0" optional="show"/>
+                                        <field name="current_qty" sum="Total" invisible="0" optional="show"/>
+                                        <field name="current_amount" sum="Total" invisible="0" optional="show"/>
+                                        <field name="to_date_progress" sum="Total" invisible="0" optional="show"/>
+                                        <field name="to_date_qty" sum="Total" invisible="0" optional="show"/>
+                                        <field name="to_date_amount" sum="Total" invisible="0" optional="show"/>
+                                        <field name="contract_project_sub_line_id" invisible="0"/>
+                                        <button name="view_transaction_line_pop_up" type="object" icon="fa-list"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page name="deduction" string="Deduction">
+                                <field name="deduction_ids" readonly="is_hide_confirm != False"/>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--                        <field name="activity_ids" widget="mail_activity"/>-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                    </div>-->
+                </form>
+            </field>
+        </record>
+
+
+        <record id="contract_invoice_action_id" model="ir.actions.act_window">
+            <field name="name">Contract Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contract.invoice</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="contract_invoice_menu_id" name="Invoice"
+                  parent="smac_construction_management.configuration_menu_id" action="contract_invoice_action_id"
+                  sequence="1"/>
+
+        ######################################################
+        <record id="contract_invoice_line_form_view_id" model="ir.ui.view">
+            <field name="name">contract.invoice.line.form.view</field>
+            <field name="model">contract.invoice.line</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="item_id"/>
+                                <field name="name"/>
+                                <field name="work_type"/>
+                                <field name="work_package_id"/>
+                                <field name="quantity" sum="Total"/>
+                                <field name="unit_price" sum="Total"/>
+                            </group>
+                            <group>
+                                <field name="uom_id"/>
+                                <field name="tax_ids" widget="many2many_tags"/>
+                                <field name="untaxed_amount" sum="Total"/>
+                                <field name="amount_tax" sum="Total"/>
+                                <field name="total_amount" sum="Total"/>
+                                <field name="contract_invoice_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="contract_invoice_sub_line_ids" string="Transaction Items">
+                                <field name="contract_invoice_sub_line_ids" widget="section_and_note_one2many"
+                                       context="{'default_company_id': company_id, 'default_currency_id': currency_id}">
+                                    <list editable="bottom">
+                                        <control>
+                                            <create name="add_line_control" string="Add a line"/>
+                                            <create name="add_section_control" string="Add a section"
+                                                    context="{'default_display_type': 'line_section'}"/>
+                                            <create name="add_note_control" string="Add a note"
+                                                    context="{'default_display_type': 'line_note'}"/>
+                                        </control>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="display_type" invisible="1"/>
+                                        <field name="wbs_id"/>
+                                        <field name="name"/>
+                                        <field name="quantity" sum="Total"/>
+                                        <field name="uom_id"/>
+                                        <field name="progress"/>
+                                        <field name="quantity_after_progres" sum="Total"/>
+                                        <field name="remarks"/>
+                                        <field name="contract_invoice_line_id" invisible="1"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--                        <field name="activity_ids" widget="mail_activity"/>-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                    </div>-->
+                </form>
+            </field>
+        </record>
+
+        <record id="contract_invoice_line_tree_view_id" model="ir.ui.view">
+            <field name="name">contract.invoice.line.tree.view</field>
+            <field name="model">contract.invoice.line</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

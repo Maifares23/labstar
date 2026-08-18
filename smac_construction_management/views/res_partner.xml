@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="res_partner_inherit_subcontractor_id" model="ir.ui.view">
+            <field name="name">res.partner.inherit.subcontractor</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="is_subcontractor"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="res_partner_action_subcontractors_id" model="ir.actions.act_window">
+            <field name="name">Subcontractors</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="domain">[('is_subcontractor', '=', 1)]</field>
+            <field name="context">{'default_is_subcontractor': 1,'default_is_company': True, 'default_supplier_rank': 1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new Subcontractors in your address book
+              </p><p>
+                Odoo helps you easily track all activities related to a Subcontractors.
+              </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="res_partner_menu_subcontractors_id" name="Subcontractors" parent="smac_construction_management.spm_menu_categ_id" action="res_partner_action_subcontractors_id" sequence="2"/>
+    </data>
+</odoo>

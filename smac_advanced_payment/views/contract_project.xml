@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="contract_project_form_view_inh" model="ir.ui.view">
+            <field name="name">contract.project.form.view.inh</field>
+            <field name="model">contract.project</field>
+            <field name="inherit_id" ref="smac_construction_management.contract_project_form_view_id"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='retention_payment_percentage']" position="after">
+                    <field name="amount_due"/>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="action_register_sales_payment" string="Register Payment" class="btn-primary"
+                            type="object"/>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button name="payment_view_button"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-archive"
+                            invisible="payment_count == 0">
+                        <field name="payment_count" widget="statinfo" string="Payments"/>
+                    </button>
+
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,36 @@
+<odoo>
+    <data noupdate="1">
+        <record id="sequence_batch_pdc_payment" model="ir.sequence">
+            <field name="name">Batch PDC Payment</field>
+            <field name="code">batch.pdc.payment</field>
+            <field name="prefix">Batch/PDC/</field>
+            <field name="padding">4</field>
+            <field eval="False" name="company_id"/>
+        </record>
+
+        <record id="sequence_pdc_payment" model="ir.sequence">
+            <field name="name">PDC Payment</field>
+            <field name="code">pdc.payment</field>
+            <field name="prefix">CUST.IN/PDC/</field>
+            <field name="padding">4</field>
+            <field eval="False" name="company_id"/>
+        </record>
+
+        <record id="sequence_pdc_payment_vendor" model="ir.sequence">
+            <field name="name">PDC Payment for vendor</field>
+            <field name="code">pdc.payment.vendor</field>
+            <field name="prefix">SUPP.OUT/PDC/</field>
+            <field name="padding">4</field>
+            <field eval="False" name="company_id"/>
+        </record>
+
+        <record id="sequence_pdc_reconcile_collection_check" model="ir.sequence">
+            <field name="name">Reconcile Collection Check Sequence</field>
+            <field name="code">pdc.reconcile.collection.check</field>
+            <field name="prefix">RCC/</field>
+            <field name="padding">4</field>
+            <field eval="False" name="company_id"/>
+        </record>
+    </data>
+</odoo>
+        

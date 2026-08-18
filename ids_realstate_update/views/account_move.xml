@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_move_prop_form_inh_rental" model="ir.ui.view">
+            <field name="name">account.move.form.inh.rental</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_draft']" position="attributes">
+                    <attribute name="groups">ids_realstate_update.reset_draft_invoice_group</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

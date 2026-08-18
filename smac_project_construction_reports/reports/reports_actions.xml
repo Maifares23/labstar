@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="statements_excel_action" model="ir.actions.report">
+            <field name="name">Contracts Statement Report</field>
+            <field name="model">contracts.statements.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">smac_project_construction_reports.statements_excel</field>
+            <field name="report_file">smac_project_construction_reports.statements_excel</field>
+        </record>
+        <record id="deductions_excel_action" model="ir.actions.report">
+            <field name="name">Project Deductions Report</field>
+            <field name="model">project.deductions.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">smac_project_construction_reports.deductions_excel</field>
+            <field name="report_file">smac_project_construction_reports.deductions_excel</field>
+        </record>
+        <record id="tracking_excel_action" model="ir.actions.report">
+            <field name="name">Project Tacking Report</field>
+            <field name="model">project.tracking.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">smac_project_construction_reports.tracking_excel</field>
+            <field name="report_file">smac_project_construction_reports.tracking_excel</field>
+        </record>
+
+    </data>
+</odoo>

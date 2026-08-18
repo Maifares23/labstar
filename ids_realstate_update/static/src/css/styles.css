@@ -1,0 +1,8 @@
+html[lang^="ar"] .o_form_view .field_lrd_mobile {
+    direction: ltr !important;
+    text-align: right !important;
+}
+html:not([lang^="ar"]) .o_form_view .field_lrd_mobile {
+    direction: ltr !important;
+    text-align: left !important;
+}

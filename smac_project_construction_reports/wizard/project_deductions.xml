@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="project_deductions_wizard_report_form_view" model="ir.ui.view">
+            <field name="name">project.deductions.wizard.report.form.view</field>
+            <field name="model">project.deductions.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="projects_ids" style="width:200px;" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button string="Print Excel" name="action_project_deductions_excel" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_project_deductions_report" model="ir.actions.act_window">
+            <field name="name">Project Deductions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">project.deductions.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_project_deductions" name="Project Deductions" action="action_project_deductions_report"
+                  parent="main_projects_construction_reports_menu"/>
+
+
+    </data>
+</odoo>

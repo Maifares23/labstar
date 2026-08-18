@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="ids_realstate_update.list">
+      <field name="name">ids_realstate_update list</field>
+      <field name="model">ids_realstate_update.ids_realstate_update</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="ids_realstate_update.action_window">
+      <field name="name">ids_realstate_update window</field>
+      <field name="res_model">ids_realstate_update.ids_realstate_update</field>
+      <field name="view_mode">list,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="ids_realstate_update.action_server">
+      <field name="name">ids_realstate_update server</field>
+      <field name="model_id" ref="model_ids_realestate_update_ids_realestate_update"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="ids_realstate_update" id="ids_realstate_update.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="ids_realstate_update.menu_1" parent="ids_realstate_update.menu_root"/>
+    <menuitem name="Menu 2" id="ids_realstate_update.menu_2" parent="ids_realstate_update.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="ids_realstate_update.menu_1_list" parent="ids_realstate_update.menu_1"
+              action="ids_realstate_update.action_window"/>
+    <menuitem name="Server to list" id="ids_realstate_update" parent="ids_realstate_update.menu_2"
+              action="ids_realstate_update.action_server"/>
+-->
+  </data>
+</odoo>

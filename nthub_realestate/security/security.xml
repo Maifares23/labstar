@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="nthub_realestate_category" model="ir.module.category">
+            <field name="name">Realestate</field>
+            <field name="sequence" eval="1"/>
+            <field name="description">Module category for Realestate</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="realestate_group_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="nthub_realestate.nthub_realestate_category"/>
+        </record>
+
+        <record id="realestate_group_officer" model="res.groups">
+            <field name="name">Officer</field>
+            <field name="category_id" ref="nthub_realestate.nthub_realestate_category"/>
+            <field name="implied_ids" eval="[(4, ref('realestate_group_user'))]"/>
+        </record>
+
+        <record id="realestate_group_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="nthub_realestate.nthub_realestate_category"/>
+            <field name="implied_ids" eval="[(4, ref('realestate_group_officer'))]"/>
+        </record>
+
+
+    </data>
+</odoo>

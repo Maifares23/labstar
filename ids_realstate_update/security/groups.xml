@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="real_state_approves_category_id" model="ir.module.category">
+            <field name="name">RealState Approves</field>
+            <field name="sequence">17</field>
+        </record>
+        <record id="real_state_unactive_category_id" model="ir.module.category">
+            <field name="name">RealState Unactive</field>
+            <field name="sequence">18</field>
+        </record>
+        <record id="real_state_accounts_category_id" model="ir.module.category">
+            <field name="name">RealState Accounts Approves</field>
+            <field name="sequence">19</field>
+        </record>
+        <record id="first_approve_group" model="res.groups">
+            <field name="name">First Approve</field>
+            <field name="category_id" ref="real_state_approves_category_id"/>
+
+        </record>
+        <record id="second_approve_group" model="res.groups">
+            <field name="name">Second Approve</field>
+            <field name="category_id" ref="real_state_approves_category_id"/>
+
+        </record>
+        <record id="confirm_group" model="res.groups">
+            <field name="name">Confirm Approve</field>
+            <field name="category_id" ref="real_state_approves_category_id"/>
+        </record>
+        <record id="confirm_contracts_group" model="res.groups">
+            <field name="name">Confirm Contracts</field>
+            <field name="category_id" ref="real_state_approves_category_id"/>
+        </record>
+        <record id="confirm_down_payment_group" model="res.groups">
+            <field name="name">Confirm DownPayment </field>
+            <field name="category_id" ref="real_state_approves_category_id"/>
+        </record>
+<!--        <record id="reset_to_draft_group" model="res.groups">-->
+<!--            <field name="name">Contract Reset To Draft</field>-->
+<!--            <field name="category_id" ref="real_state_approves_category_id"/>-->
+<!--        </record>-->
+        <record id="unactive_group" model="res.groups">
+            <field name="name">Unactive</field>
+            <field name="category_id" ref="real_state_unactive_category_id"/>
+        </record>
+        <record id="unactive_approve_group" model="res.groups">
+            <field name="name">Approve Unactive</field>
+            <field name="category_id" ref="real_state_unactive_category_id"/>
+        </record>
+        <record id="Unactive_final_group" model="res.groups">
+            <field name="name">Final Unactive</field>
+            <field name="category_id" ref="real_state_unactive_category_id"/>
+        </record>
+        <record id="contract_delete_access_group" model="res.groups">
+            <field name="name">Rental Delete Access</field>
+            <field name="category_id" ref="real_state_unactive_category_id"/>
+        </record>
+        <record id="reset_draft_invoice_group" model="res.groups">
+            <field name="name">Invoice Reset To Draft</field>
+            <field name="category_id" ref="real_state_accounts_category_id"/>
+        </record>
+        <record id="reset_delete_old_invoice_group" model="res.groups">
+            <field name="name">Delete Old Invoice</field>
+            <field name="category_id" ref="real_state_accounts_category_id"/>
+        </record>
+        <record id="payment_post_group" model="res.groups">
+            <field name="name">Payment Post</field>
+            <field name="category_id" ref="real_state_accounts_category_id"/>
+        </record>
+        <record id="payment_draft_group" model="res.groups">
+            <field name="name">Payment draft</field>
+            <field name="category_id" ref="real_state_accounts_category_id"/>
+        </record>
+    </data>
+</odoo>

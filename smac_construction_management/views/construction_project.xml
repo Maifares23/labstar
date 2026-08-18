@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="spm_menu_categ_id" name="S.P.M" sequence="7"/>
+
+        <!--        ##########################project-->
+
+        <record id="construction_project_kanban_view_id" model="ir.ui.view">
+            <field name="name">construction.project.kanban.view</field>
+            <field name="model">construction.project</field>
+            <field name="arch" type="xml">
+                <kanban class="o_broker_profile_kanban" create="1">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <templates>
+                        <t t-name="card">
+                            <div class="fw-bold fs-5 mb-2">
+                                <field name="name"/>
+                            </div>
+                            <div class="text-muted">
+                                <span class="fw-semibold">Customer:</span>
+                                <field name="partner_id"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="construction_project_tree_view_id" model="ir.ui.view">
+            <field name="name">construction.project.tree.view</field>
+            <field name="model">construction.project</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="business_unit_id"/>
+                    <field name="partner_id"/>
+                    <field name="analytic_account_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="construction_project_form_view_id" model="ir.ui.view">
+            <field name="name">construction.project.form.view</field>
+            <field name="model">construction.project</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="get_business_Unit" type="object"
+                                    icon="fa-check-square-o" invisible="1">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">
+                                        Business Unit
+                                    </span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" name="get_man_power_types" type="object"
+                                    icon="fa-check-square-o">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">
+                                        Man Power Types
+                                    </span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" name="get_equipments" type="object"
+                                    icon="fa-check-square-o">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">
+                                        Equipments
+                                    </span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" name="get_contract_project" type="object"
+                                    icon="fa-check-square-o">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_contracts" nolabel="1"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Contracts
+                                    </span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" name="get_wbs" type="object" icon="fa-check-square-o">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">
+                                        WBS
+                                    </span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" name="get_work_package" type="object"
+                                    icon="fa-check-square-o">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">
+                                        Work Package
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="0" placeholder="Project Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="business_unit_id"/>
+                            </group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="analytic_account_id"/>
+                            </group>
+
+
+                        </group>
+                    </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--                        <field name="activity_ids" widget="mail_activity"/>-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                    </div>-->
+                </form>
+            </field>
+        </record>
+
+
+        <record id="construction_project_action_id" model="ir.actions.act_window">
+            <field name="name">Construction Project</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">construction.project</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="construction_project_menu_id" name="Project"
+                  parent="smac_construction_management.spm_menu_categ_id" action="construction_project_action_id"
+                  sequence="1"/>
+
+    </data>
+</odoo>

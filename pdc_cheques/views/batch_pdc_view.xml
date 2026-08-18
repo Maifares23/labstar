@@ -1,0 +1,176 @@
+<odoo>
+    <data>
+
+        <record id="action_batch_pdc_payment"
+                model="ir.actions.act_window">
+            <field name="name">Batch PDC Payment</field>
+            <field name="res_model">batch.pdc.payment</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_pdc_payment_invoice_view"/>
+            <field name="context">{'default_invoice_ids': [(4, active_id, None)]}
+            </field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_batch_pdc_payment_filter" model="ir.ui.view">
+            <field name="name">view.batch.pdc.payment.filter</field>
+            <field name="model">batch.pdc.payment</field>
+            <field name="arch" type="xml">
+                <search string="Batch PDC Payment">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="journal_id"/>
+                    <field name="deposit_journal_id"/>
+                    <field name="amount"/>
+                    <field name="payment_date"/>
+                    <field name="cheques_no"/>
+                    <field name="no_of_months"/>
+                    <field name="first_cheque_date"/>
+                    <field name="first_cheque_ref"/>
+                    <field name="agent"/>
+                    <field name="bank"/>
+                    <field name="payment_type"/>
+
+                    <filter string="Received Cheques" name="received_cheques"
+                            domain="[('payment_type', '=', 'inbound')]"/>
+                    <filter string="Issued Cheques" name="issued_cheques" domain="[('payment_type', '=', 'outbound')]"/>
+                    <separator/>
+
+                    <filter string="Payment Date" name="payment_date" date="payment_date"/>
+                    <filter string="First Cheque Date" name="first_cheque_date" date="first_cheque_date"/>
+
+                    <group expand="0" string="Group By">
+                        <filter string="Payment Date" name="group_by_payment_date" domain="[]"
+                                context="{'group_by': 'payment_date'}"/>
+                        <separator/>
+                        <filter string="Partner" name="group_by_partner_id" domain="[]"
+                                context="{'group_by': 'partner_id'}"/>
+                        <filter string="Payment Type" name="group_by_payment_type" domain="[]"
+                                context="{'group_by': 'payment_type'}"/>
+                        <filter string="Payment Journal" name="group_by_journal_id" domain="[]"
+                                context="{'group_by': 'journal_id'}"/>
+                        <filter string="Bank Journal" name="group_by_deposit_journal_id" domain="[]"
+                                context="{'group_by': 'deposit_journal_id'}"/>
+                        <separator/>
+                        <filter string="Status" name="group_by_state" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="batch_pdc_payment_list" model="ir.ui.view">
+            <field name="name">batch.pdc.payment.list</field>
+            <field name="model">batch.pdc.payment</field>
+            <field name="arch" type="xml">
+                <list decoration-info="state=='draft'" decoration-muted="state=='lock'" edit="false">
+                    <field name="payment_date"/>
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <field name="partner_id"/>
+                    <field name="amount" sum="Amount"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                    <field name="state"/>
+                    <field name="currency_id" optional="hide"/>
+                </list>
+            </field>
+        </record>
+
+
+        <record id="batch_pdc_payment_form" model="ir.ui.view">
+            <field name="name">batch.pdc.payment.form</field>
+            <field name="model">batch.pdc.payment</field>
+            <field name="arch" type="xml">
+                <form string="PDC Payment">
+                    <header>
+                        <button name="action_compute_pdc_lines" class="oe_highlight"
+                                string="Compute Cheques" invisible="state != 'draft'"
+                                type="object"/>
+                        <button name="action_confirm_pdc_lines" class="oe_highlight" invisible="state != 'draft'"
+                                string="Confirm Cheques"
+                                type="object"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,lock"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="payment_type" widget="radio" options="{'horizontal': true}" readonly="state != 'draft'"/>
+                                <field name="partner_type" widget="radio" options="{'horizontal': true}" readonly="state != 'draft'"/>                                <field name="pdc_journal_type" invisible="1"/>
+                                <field name="partner_id"
+                                       context="{'default_supplier': payment_type == 'outbound', 'default_customer': payment_type == 'inbound'}"
+                                       readonly="state != 'draft'"/>
+                                <label for="amount"/>
+                                <div name="amount_div" class="o_row">
+                                    <field name="amount"
+                                           readonly="state != 'draft'"/>
+                                    <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                           groups="base.group_multi_currency"/>
+                                </div>
+                                <field name="cheques_no"
+                                       readonly="state != 'draft'"/>
+                                <field name="no_of_months"
+                                       readonly="state != 'draft'"/>
+                                <field name="first_cheque_date"
+                                       readonly="state != 'draft'"/>
+                                <field name="first_cheque_ref" readonly="state != 'draft'" required="1"/>
+
+                            </group>
+                            <group>
+                                <field name="journal_id" widget="selection"
+                                       readonly="state != 'draft'"/>
+                                <field name="deposit_journal_id" widget="selection"
+                                       readonly="state != 'draft'"/>
+
+                                <field name="payment_date"
+                                       readonly="state != 'draft'"/>
+                                <field name="communication"
+                                       readonly="state != 'draft'"/>
+                                <field name="agent"
+                                       readonly="state != 'draft'"/>
+                                <field name="bank"
+                                       readonly="state != 'draft'"/>
+                                <field name="company_id" groups="base.group_multi_company"
+                                       readonly="state != 'draft'"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="lines" string="Post Dated Cheques">
+                                <field name="batch_pdc_line_ids"
+                                       readonly="state != 'draft'">
+                                    <list editable="bottom">
+                                        <field name="cheque_ref"/>
+                                        <field name="due_date"/>
+                                        <field name="pdc_id" column_invisible="parent.state == 'draft'"/>
+                                        <field name="amount" sum="Total"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+
+                    <!-- Chatter -->
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_pdc_payment_batch" model="ir.actions.act_window">
+            <field name="name">Batch PDC Payments</field>
+            <field name="res_model">batch.pdc.payment</field>
+            <field name="view_id" ref="batch_pdc_payment_list"/>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Batch Post Dated Check
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="action_pdc_payment_batch" name="Batch PDC" id="menu_finance_batch_pdc"
+                  parent="menu_finance_pdc" sequence="2"/>
+
+    </data>
+</odoo>

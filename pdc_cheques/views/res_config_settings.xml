@@ -1,0 +1,26 @@
+<odoo>
+    <record id="res_config_settings_view_form_pdc" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.pdc</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="70"/>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <block title="PDC Management" name="pdc_block">
+                    <div class="text-muted">
+                        <p style="margin-bottom: 0">These accounts are set in any new PDC payment entry created.</p>
+                    </div>
+                    <setting id="pdc_customers" title="PDC Account For Customers">
+                        <field name="customer_pdc_payment_account_id"/>
+                    </setting>
+                    <setting id="pdc_vendors" title="PDC Account for Vendors">
+                        <field name="vendor_pdc_payment_account_id"/>
+                    </setting>
+                    <setting id="enable_deposit_entry" title="Enable Deposit Entry For Vendors">
+                        <field name="enable_deposit_entry"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

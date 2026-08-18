@@ -1,0 +1,211 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* nts_res_area
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-25 09:06+0000\n"
+"PO-Revision-Date: 2025-05-25 09:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "<i class=\"fw-light fa fa-angle-left me-2\"/>Discard"
+msgstr ""
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "<option value=\"\">City...</option>"
+msgstr " <option value=\"\">المحافظة...</option>"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "<option value=\"\">Country...</option>"
+msgstr " <option value=\"\">الدولة...</option>"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "<option value=\"\">Select Area</option>"
+msgstr " <option value=\"\">اختر المنطقة</option>"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "<span class=\"px-3\">or</span>"
+msgstr ""
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid ""
+"<span id=\"mobile_error\" style=\"color:red; display:none;\">Invalid "
+"Alternate Phone</span>"
+msgstr " <span id=\"mobile_error\" style=\"color:red; display:none;\">رقم الهاتف البديل غير صالح</span>"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid ""
+"<span id=\"phone_error\" style=\"color:red; display:none;\">Invalid phone "
+"number</span>"
+msgstr " <span id=\"phone_error\" style=\"color:red; display:none;\">رقم الهاتف غير صالح</span>"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "<span>Already have an account?</span>"
+msgstr ""
+
+#. module: nts_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_partner__additional_notes
+#: model:ir.model.fields,field_description:nts_res_area.field_res_users__additional_notes
+#: model_terms:ir.ui.view,arch_db:nts_res_area.view_partner_form_inherit
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Additional Notes"
+msgstr " ملاحظات إضافية"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Alternate Phone"
+msgstr " رقم الهاتف البديل"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Apartment, suite, etc."
+msgstr ""
+
+#. module: nts_res_area
+#: model:ir.model,name:nts_res_area.model_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_partner__area_id
+#: model:ir.model.fields,field_description:nts_res_area.field_res_users__area_id
+#: model:ir.ui.menu,name:nts_res_area.menu_area_root
+#: model_terms:ir.ui.view,arch_db:nts_res_area.view_partner_form_inherit
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Area"
+msgstr " المنطقة"
+
+#. module: nts_res_area
+#: model:ir.actions.act_window,name:nts_res_area.action_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_country_state__area_ids
+msgid "Areas"
+msgstr " المناطق"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "City <span class=\"text-danger\">*</span>"
+msgstr " المحافظة <span class=\"text-danger\">*</span>"
+
+#. module: nts_res_area
+#: model:ir.model,name:nts_res_area.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Continue checkout"
+msgstr " متابعة الخروج"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Country <span class=\"text-danger\">*</span>"
+msgstr " الدولة <span class=\"text-danger\">*</span>"
+
+#. module: nts_res_area
+#: model:ir.model,name:nts_res_area.model_res_country_state
+msgid "Country state"
+msgstr "الولاية "
+
+#. module: nts_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_area__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: nts_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_area__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: nts_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_area__display_name
+msgid "Display Name"
+msgstr " اسم العرض"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Email"
+msgstr " البريد الإلكتروني"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Fill in your address"
+msgstr " املأ عنوانك"
+
+#. module: nts_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_partner__full_address
+#: model:ir.model.fields,field_description:nts_res_area.field_res_users__full_address
+#: model_terms:ir.ui.view,arch_db:nts_res_area.view_partner_form_inherit
+msgid "Full Address"
+msgstr " العنوان التفصيلي"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Full Address <span class=\"text-danger\">*</span>"
+msgstr " العنوان التفصيلي <span class=\"text-danger\">*</span>"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Full name <span class=\"text-danger\">*</span>"
+msgstr " الاسم بالكامل <span class=\"text-danger\">*</span>"
+
+#. module: nts_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_area__id
+msgid "ID"
+msgstr ""
+
+#. module: nts_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_area__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: nts_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_area__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: nts_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_area__name
+msgid "Name"
+msgstr " الاسم"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Phone Number<span class=\"text-danger\">*</span>"
+msgstr " رقم الهاتف<span class=\"text-danger\">*</span>"
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Save address"
+msgstr ""
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Sign in"
+msgstr ""
+
+#. module: nts_res_area
+#: model:ir.model.fields,field_description:nts_res_area.field_res_area__state_id
+msgid "State"
+msgstr ""
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Street and Number"
+msgstr ""
+
+#. module: nts_res_area
+#: model_terms:ir.ui.view,arch_db:nts_res_area.website_sale_address_inherit
+msgid "Zip Code"
+msgstr ""

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="stage_form_view_id" model="ir.ui.view">
+            <field name="name">stage.form.view</field>
+            <field name="model">stage</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="sequence" widget="handle" optional="show"/>
+                            <field name="name"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="group_ids" widget="many2many_tags"/>
+                            <field name="due_days"/>
+                            <field name="workflow_id"/>
+                        </group>
+                    </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--                        <field name="activity_ids" widget="mail_activity"/>-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                    </div>-->
+                </form>
+            </field>
+        </record>
+
+
+        <record id="stage_tree_view_id" model="ir.ui.view">
+            <field name="name">work.flow.tree.view</field>
+            <field name="model">stage</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="sequence" widget="handle" optional="show"/>
+                    <field name="name"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="group_ids" widget="many2many_tags"/>
+                    <field name="due_days"/>
+                    <field name="workflow_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="stage_action_id" model="ir.actions.act_window">
+            <field name="name">Stage</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stage</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="stage_menu_id" name="Stage" parent="smac_construction_management.configuration_menu_id"
+                  action="stage_action_id" sequence="1"/>
+
+        <!--invoice-->
+        <record id="stage_invoice_tree_id" model="ir.ui.view">
+            <field name="name">stage.invoice.tree</field>
+            <field name="model">stage.invoice</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="group_ids" widget="many2many_tags"/>
+                    <field name="sequence"/>
+                    <field name="construction_project_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="stage_invoice_form_id" model="ir.ui.view">
+            <field name="name">stage.invoice.form</field>
+            <field name="model">stage.invoice</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id"/>
+                            <field name="group_ids" widget="many2many_tags"/>
+                            <field name="sequence"/>
+                            <field name="construction_project_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="stage_invoice_action_id" model="ir.actions.act_window">
+            <field name="name">Stage Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stage.invoice</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <!--      deductions-->
+        <record id="stage_deductions_tree_id" model="ir.ui.view">
+            <field name="name">stage.deductions.tree</field>
+            <field name="model">stage.deductions</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="group_ids" widget="many2many_tags"/>
+                    <field name="sequence"/>
+                    <field name="construction_project_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="stage_deductions_form_id" model="ir.ui.view">
+            <field name="name">stage.deductions.form</field>
+            <field name="model">stage.deductions</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id"/>
+                            <field name="group_ids" widget="many2many_tags"/>
+                            <field name="sequence"/>
+                            <field name="construction_project_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="stage_deductions_action_id" model="ir.actions.act_window">
+            <field name="name">Stage Deductions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stage.deductions</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+
+               <!--        contract-->
+        <record id="stage_contract_tree_id" model="ir.ui.view">
+            <field name="name">stage.contract.tree</field>
+            <field name="model">stage.contract</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="group_ids" widget="many2many_tags"/>
+                    <field name="sequence"/>
+                    <field name="construction_project_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="stage_contract_form_id" model="ir.ui.view">
+            <field name="name">stage.contract.form</field>
+            <field name="model">stage.contract</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id"/>
+                            <field name="group_ids" widget="many2many_tags"/>
+                            <field name="sequence"/>
+                            <field name="construction_project_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="stage_contract_action_id" model="ir.actions.act_window">
+            <field name="name">Stage Contract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stage.contract</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+
+<!--       request-->
+        <record id="stage_request_tree_id" model="ir.ui.view">
+            <field name="name">stage.request.tree</field>
+            <field name="model">stage.request</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="group_ids" widget="many2many_tags"/>
+                    <field name="sequence"/>
+                    <field name="construction_project_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="stage_request_form_id" model="ir.ui.view">
+            <field name="name">stage.request.form</field>
+            <field name="model">stage.request</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id"/>
+                            <field name="group_ids" widget="many2many_tags"/>
+                            <field name="sequence"/>
+                            <field name="construction_project_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="stage_request_action_id" model="ir.actions.act_window">
+            <field name="name">Stage Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stage.request</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

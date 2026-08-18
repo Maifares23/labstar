@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <!-- Inherit the original template -->
+    <t t-name="website_sale_collect.ClickAndCollectAvailability" t-inherit="website_sale_collect.ClickAndCollectAvailability" t-inherit-mode="extension">
+        <!-- Modify the content using XPath -->
+        <xpath expr="//div[@class='o_click_and_collect_availability']" position="attributes">
+            <attribute name="style">display: none !important;</attribute>
+        </xpath>
+    </t>
+
+</templates>

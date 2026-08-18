@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_view_form_inh_real_state" model="ir.ui.view">
+            <field name="name">res.partner.view.form.inh.real.state</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='is_owner']" position="after">
+                    <field name="is_broker"/>
+                </xpath>
+                <xpath expr="//group[@name='partner_data']" position="inside">
+                    <group string="Partner Data">
+                        <field name="nationality_id"/>
+                        <field name="id_no"/>
+                        <field name="id_type"/>
+                        <field name="cr_no"/>
+                        <field name="tca_cr_issued_at"/>
+                        <field name="tca_license_number"/>
+                        <field name="tca_commercial_activities"/>
+                        <field name="tca_license_issue_place"/>
+                        <field name="td_cr_date"/>
+                        <field name="td_organization_type"/>
+                        <field name="td_issued_by"/>
+                        <field name="issuing_authority"/>
+<!--                        <field name="registry_issuing_place"/>-->
+                        <field name="fax_no"/>
+                        <field name="unified_number"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="broker_action" model="ir.actions.act_window">
+            <field name="name">Brokers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="context">{"default_is_broker": True}</field>
+            <field name="domain">[('is_broker', '=', True)]</field>
+        </record>
+        <record id="action_contract_down_payment" model="ir.actions.act_window">
+            <field name="name">Contract Down Payments</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contract.down.payment</field>
+            <field name="view_mode">kanban,list,form</field>
+        </record>
+    </data>
+</odoo>

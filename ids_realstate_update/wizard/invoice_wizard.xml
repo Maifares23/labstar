@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="invoice_wizard_form" model="ir.ui.view">
+            <field name="name">invoice.wizard.wizard.form</field>
+            <field name="model">invoice.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="date"/>
+                    </group>
+                    <footer>
+                        <button name="action_confirm" string="Delete Old Invoices" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_invoice_wizard" model="ir.actions.act_window">
+            <field name="name">Custody Transfer</field>
+            <field name="res_model">invoice.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="invoice_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_invoice_wizard" name="Delete Old Invoices" parent="nthub_realestate.configration_menu" action="ids_realstate_update.action_invoice_wizard" groups="ids_realstate_update.reset_delete_old_invoice_group" />
+    </data>
+</odoo>

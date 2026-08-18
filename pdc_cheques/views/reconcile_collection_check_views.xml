@@ -1,0 +1,105 @@
+<odoo>
+    <record id="view_pdc_reconcile_collection_check_filter" model="ir.ui.view">
+        <field name="name">view.product.chemical.property.filter</field>
+        <field name="model">pdc.reconcile.collection.check</field>
+        <field name="arch" type="xml">
+            <search string="Reconcile Collection Checks">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="check_collection_date"/>
+                <field name="check_number"/>
+
+                <filter string="Check Collection Date" name="check_collection_date" date="check_collection_date"/>
+                <separator/>
+                <filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state','=','confirm')]"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Customer" name="group_by_customer_id" domain="[]"
+                            context="{'group_by': 'customer_id'}"/>
+                    <filter string="Check Collection Date" name="group_by_check_collection_date" domain="[]"
+                            context="{'group_by': 'check_collection_date'}"/>
+                    <separator/>
+                    <filter string="Status" name="group_by_state" domain="[]" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_pdc_reconcile_collection_check_list" model="ir.ui.view">
+        <field name="name">view.product.chemical.property.list</field>
+        <field name="model">pdc.reconcile.collection.check</field>
+        <field name="arch" type="xml">
+            <list string="Reconcile Collection Checks">
+                <field name="name"/>
+                <field name="customer_id" optional="show"/>
+                <field name="check_collection_date" optional="show"/>
+                <field name="check_number" optional="show"/>
+                <field name="state" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pdc_reconcile_collection_check_form" model="ir.ui.view">
+        <field name="name">view.product.chemical.property.form</field>
+        <field name="model">pdc.reconcile.collection.check</field>
+        <field name="arch" type="xml">
+            <form string="Reconcile Collection Checks">
+                <header>
+                    <button name="action_confirm" type="object" invisible="state != 'draft'" string="Confirm"
+                            class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                </header>
+
+                <sheet>
+                    <widget name="web_ribbon" title="Draft" bg_color="bg-danger"
+                            invisible="not id or state != 'draft'"/>
+                    <widget name="web_ribbon" title="Confirmed" bg_color="bg-info" invisible="state != 'confirm'"/>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="customer_id" options="{'no_open':True,'no_create':True}"
+                                   readonly="state != 'draft'"/>
+                            <field name="deposit_journal_id" options="{'no_open':True,'no_create':True}"
+                                   readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="check_collection_date" readonly="state != 'draft'"/>
+                            <field name="check_number" readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                </sheet>
+
+                <!-- Chatter -->
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pdc_reconcile_collection_check" model="ir.actions.act_window">
+        <field name="name">Reconcile Collection Checks</field>
+        <field name="res_model">pdc.reconcile.collection.check</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_confirm_pdc_reconcile_collection_check" model="ir.actions.server">
+        <field name="name">Confirm</field>
+        <field name="model_id" ref="pdc_cheques.model_pdc_reconcile_collection_check"/>
+        <field name="binding_model_id" ref="pdc_cheques.model_pdc_reconcile_collection_check"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+            action = records.action_confirm()
+        </field>
+    </record>
+
+    <menuitem id="menu_pdc_reconcile_collection_check" name="Reconcile Collection Checks" parent="menu_finance_pdc"
+              action="action_pdc_reconcile_collection_check" sequence="3"/>
+</odoo>

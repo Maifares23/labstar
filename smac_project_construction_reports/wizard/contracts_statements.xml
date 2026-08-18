@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="contracts_statements_wizard_report_form_view" model="ir.ui.view">
+            <field name="name">contracts.statements.wizard.report.form.view</field>
+            <field name="model">contracts.statements.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="projects_ids" style="width:200px;" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button string="Print Excel" name="action_project_statements_excel" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_contracts_statements_report" model="ir.actions.act_window">
+            <field name="name">Project Statements</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contracts.statements.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="main_projects_construction_reports_menu" name="Reporting"
+                  parent="smac_construction_management.spm_menu_categ_id" sequence="3"/>
+        <menuitem id="menu_contracts_statements" name="Project Statements" action="action_contracts_statements_report"
+                  parent="main_projects_construction_reports_menu"/>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="rental_contract_line_list_view_inh" model="ir.ui.view">
+            <field name="name">rental.contract.line.list.view.inh</field>
+            <field name="model">rental.contract.line</field>
+            <field name="inherit_id" ref="nthub_realestate.rental_contract_line_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount']" position="after">
+                    <field name="tax_id" optional="show"/>
+                    <field name="amount_with_tax" optional="show"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

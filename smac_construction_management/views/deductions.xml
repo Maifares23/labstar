@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="deductions_tree_view_id" model="ir.ui.view">
+            <field name="name">deductions.tree.view</field>
+            <field name="model">deductions</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="project_id"/>
+                    <field name="subcontractor_id"/>
+                    <field name="contract_project_id"/>
+                    <field name="stage_id"/>
+                    <field name="total_amount" sum="Total"/>
+                </list>
+            </field>
+        </record>
+
+
+        <record id="deductions_search_view_id" model="ir.ui.view">
+            <field name="name">deductions.search.view</field>
+            <field name="model">deductions</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="project_id"/>
+                    <field name="subcontractor_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="deductions_form_view_id" model="ir.ui.view">
+            <field name="name">deductions.form.view</field>
+            <field name="model">deductions</field>
+            <field name="arch" type="xml">
+                <form string="Deductions" name="deductions">
+                    <header>
+                        <button string="Confirm" class="oe_highlight" name="action_confirm"
+                                invisible="is_hide_confirm != False" type="object"/>
+                        <field name="stage_id" widget="statusbar" options="{'clickable': '0'}"/>
+                        <field name="state" invisible="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Deduction Name"
+                                       readonly="is_hide_confirm != False"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="is_hide_confirm" invisible="1"/>
+                                <field name="is_confirm_invoice" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="code" readonly="is_hide_confirm != False"/>
+                                <field name="contract_project_id" readonly="is_hide_confirm != False"/>
+
+
+                            </group>
+                            <group>
+                                <field name="project_id" readonly="is_hide_confirm != False"/>
+                                <field name="subcontractor_id" readonly="is_hide_confirm != False"/>
+                                <field name="workflow_id" force_save="1" readonly="is_hide_confirm != False"/>
+                                <field name="date_confirm_stage" invisible="1"/>
+                                <field name="due_days" invisible="1"/>
+                                <field name="num_days" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="deductions" string="Deductions">
+                                <field name="deduction_ids" widget="section_and_note_one2many"
+                                       context="{'default_company_id': company_id, 'default_currency_id': currency_id}"
+                                       readonly="is_hide_confirm != False">
+
+                                    <list editable="bottom">
+                                        <control>
+                                            <create name="add_line_control" string="Add a line"/>
+                                            <create name="add_section_control" string="Add a section"
+                                                    context="{'default_display_type': 'line_section'}"/>
+                                            <create name="add_note_control" string="Add a note"
+                                                    context="{'default_display_type': 'line_note'}"/>
+                                        </control>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="display_type" invisible="1"/>
+                                        <field name="name"/>
+                                        <field name="work_type"/>
+                                        <field name="wbs_id"/>
+                                        <field name="work_package_id"/>
+                                        <field name="uom_id"/>
+                                        <field name="quantity" sum="Total"/>
+                                        <field name="unit_price" sum="Total"/>
+                                        <field name="admin_fees"/>
+                                        <field name="reserved_unit_price" sum="Total"/>
+                                        <field name="amount" sum="Total"/>
+                                        <field name="deduction_id" invisible="1"/>
+                                    </list>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                    <field name="total_amount" colspan="2" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--                        <field name="activity_ids" widget="mail_activity"/>-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                    </div>-->
+                </form>
+            </field>
+        </record>
+
+
+        <record id="deductions_action_id" model="ir.actions.act_window">
+            <field name="name">Deductions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">deductions</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="deductions_menu_id" name="Deductions"
+                  parent="smac_construction_management.configuration_menu_id" action="deductions_action_id"
+                  sequence="10"/>
+
+    </data>
+</odoo>

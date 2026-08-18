@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ownership_contract_form_inh" model="ir.ui.view">
+            <field name="name">ownership.contract.form.inh</field>
+            <field name="model">ownership.contract</field>
+            <field name="inherit_id" ref="nthub_realestate.ownership_contract_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_draft" type="object"
+                            invisible="state != 'canceled'"
+                            string="Reset To Draft " class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

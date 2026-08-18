@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="work_package_form_view_id" model="ir.ui.view">
+            <field name="name">work.package.form.view</field>
+            <field name="model">work.package</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="project_id"/>
+                        </group>
+                    </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--                        <field name="activity_ids" widget="mail_activity"/>-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                    </div>-->
+                </form>
+            </field>
+        </record>
+
+        <record id="work_package_tree_view_id" model="ir.ui.view">
+            <field name="name">work.package.tree.view</field>
+            <field name="model">work.package</field>
+            <field name="arch" type="xml">
+                <list string="" editable="bottom">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="project_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="work_package_action_id" model="ir.actions.act_window">
+            <field name="name">Work Package</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">work.package</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="work_package_menu_id" name="Work Package" parent="smac_construction_management.configuration_menu_id"
+                  action="work_package_action_id" sequence="3"/>
+
+    </data>
+</odoo>

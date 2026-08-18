@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="rental_contract_form_inh" model="ir.ui.view">
+            <field name="name">rental.contract.form.inh</field>
+            <field name="model">rental.contract</field>
+            <field name="inherit_id" ref="nthub_realestate.rental_contract_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_owner_id']" position="attributes">
+                    <attribute name="domain">[('is_owner','=',True)]</attribute>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil"
+                            name="view_invoices"
+                            invisible="invoice_count == 0">
+                        <field name="invoice_count" string="Invoices" widget="statinfo"/>
+                    </button>
+                </xpath>
+                <xpath expr="//page[@name='furniture']" position="before">
+                    <page string="Financial Data">
+                        <group>
+                            <group>
+                                <field name="brokerage_fee" readonly="state in ['confirmed','unactive']"
+                                       force_save="1"/>
+                                <field name="security_deposit" readonly="state in ['confirmed','unactive']"
+                                       force_save="1"/>
+                                <field name="waste_removal_fee" readonly="state in ['confirmed','unactive']"
+                                       force_save="1"/>
+                                <field name="water_annual_mount" readonly="state in ['confirmed','unactive']"
+                                       force_save="1"/>
+                                <label for="general_services_mount" readonly="state in ['confirmed','unactive']"
+                                       force_save="1"/>
+                                <div class="o_row">
+                                    <field name="general_services_mount" readonly="state in ['confirmed','unactive']"/>
+                                    <span>
+                                        Included
+                                    </span>
+                                    <field name="fd_general_services_included"
+                                           readonly="state in ['confirmed','unactive']"/>
+                                </div>
+                                <field name="engineering_supervision_fee" readonly="state in ['confirmed','unactive']"/>
+                                <field name="unit_finishing_fee" readonly="state in ['confirmed','unactive']"/>
+                                <field name="fd_rent_payment_cycle" readonly="state in ['confirmed','unactive']"/>
+                                <field name="fd_no" readonly="1" force_save="1"/>
+                                <field name="fd_id_cr_number" readonly="1" force_save="1"/>
+                                <field name="number_of_rent_payments"/>
+                            </group>
+                            <group>
+                                <label for="retainer_fee"/>
+                                <div class="o_row">
+                                    <field name="retainer_fee" readonly="state in ['confirmed','unactive']"
+                                           force_save="1"/>
+                                </div>
+                                <field name="gas_annual_mount" readonly="state in ['confirmed','unactive']"
+                                       force_save="1"/>
+                                <field name="electricity_annual_mount" readonly="state in ['confirmed','unactive']"
+                                       force_save="1"/>
+                                <field name="rental_fee"
+                                       readonly="increased_rent_type =='flexable' or state in ['confirmed','unactive']"
+                                       force_save="1"/>
+                                <!--                                <field name="rental_value"/>-->
+                                <label for="recurring_interval"/>
+                                <div class="o_row">
+                                    <span class="mr-1">Every</span>
+                                    <field name="recurring_interval" required="1"
+                                           readonly="increased_rent_type =='flexable' or state != 'draft'"/>
+                                    <field name="periodicity" class="field_rule_type" required="1"
+                                           readonly="increased_rent_type =='flexable' or state != 'draft'"/>
+                                </div>
+                                <field name="insurance_fee"
+                                       readonly="increased_rent_type =='flexable' or state != 'draft'"/>
+                                <field name="fd_id_type" readonly="1" force_save="1"/>
+                                <field name="fd_vat" readonly="1" force_save="1"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Lessor Data">
+                        <group>
+                            <group>
+                                <field name="company_id" string="Company name/Founder"
+                                       readonly="state in ['confirmed','unactive']"
+                                       force_save="1"
+                                       options="{'no_open': True, 'no_quick_create': True,'no_create': True}"/>
+                                <field name="unified_number" readonly="1" force_save="1"/>
+                                <field name="cr_date" readonly="1" force_save="1"/>
+                            </group>
+                            <group>
+                                <field name="organization_type" readonly="1" force_save="1"/>
+                                <field name="cr_no" readonly="1" force_save="1"/>
+                                <field name="vat" readonly="1" force_save="1"/>
+                                <field name="issued_by" readonly="1" force_save="1"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Lessor Representative Data">
+                        <group>
+                            <group>
+                                <field name="lrd_owner_id" readonly="state in ['confirmed','unactive']" force_save="1"
+                                       options="{'no_open': True, 'no_quick_create': True,'no_create': True}"/>
+                                <field name="lrd_id_no" readonly="1" force_save="1"/>
+                                <field name="lrd_email" readonly="1" force_save="1"/>
+                                <field name="lrd_national_address" readonly="1" force_save="1"/>
+                            </group>
+                            <group>
+                                <field name="lrd_nationality_id" readonly="1" force_save="1"/>
+                                <field name="lrd_id_type" readonly="1" force_save="1"/>
+                                <field name="lrd_vat" readonly="1" force_save="1"/>
+                                <field name="lrd_mobile_no" readonly="1" force_save="1"
+                                       style="direction:ltr; text-align:center;"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Tenant Data &amp; Commercial Activities">
+                        <group>
+                            <group>
+                                <field name="partner_id" domain="[('is_tenant','=',True)]"
+                                       readonly="state in ['confirmed','unactive']" force_save="1"
+                                       options="{'no_open': True, 'no_quick_create': True,'no_create': True}"/>
+                                <field name="td_unified_number" readonly="1" force_save="1"/>
+                                <field name="td_cr_date" readonly="1" force_save="1"/>
+                                <field name="td_organization_type" readonly="1" force_save="1"/>
+                                <field name="td_cr_no" readonly="1" force_save="1"/>
+                                <field name="td_issued_by" readonly="1" force_save="1"/>
+                            </group>
+                            <group>
+                                <field name="tca_cr_issued_at" readonly="1" force_save="1"/>
+                                <field name="tca_license_number" readonly="1" force_save="1"/>
+                                <field name="td_vat" readonly="1" force_save="1"/>
+                                <field name="tca_commercial_activities" readonly="1" force_save="1"/>
+                                <field name="tca_tenant_business" readonly="state in ['confirmed','unactive']"/>
+                                <field name="tca_license_issue_place" readonly="1" force_save="1"/>
+                            </group>
+                        </group>
+                    </page>
+
+                    <page string="Tenant Representative Data">
+                        <group>
+                            <group>
+                                <field name="trd_tenant_id" readonly="state in ['confirmed','unactive']" force_save="1"
+                                       options="{'no_open': True, 'no_quick_create': True,'no_create': True}"/>
+                                <field name="trd_id_no" readonly="1" force_save="1"/>
+                                <field name="trd_email" readonly="1" force_save="1"/>
+                                <field name="trd_national_address" readonly="1" force_save="1"/>
+                            </group>
+                            <group>
+                                <field name="trd_nationality_id" readonly="1" force_save="1"/>
+                                <field name="trd_id_type" readonly="1" force_save="1"/>
+                                <field name="trd_vat" readonly="1" force_save="1"/>
+                                <field name="trd_mobile_no" readonly="1" force_save="1"
+                                       style="direction:ltr; text-align:center;"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Brokerage Entity and Broker Data">
+                        <group>
+                            <group>
+                                <field name="broker_id" readonly="state in ['confirmed','unactive']" force_save="1"
+                                       options="{'no_open': True, 'no_quick_create': True,'no_create': True}"/>
+                                <field name="bbd_id_no" readonly="1" force_save="1"/>
+                                <field name="bbd_email" readonly="1" force_save="1"/>
+                                <field name="bbd_nationality_id" readonly="1" force_save="1"/>
+                                <field name="bbd_id_type" readonly="1" force_save="1"/>
+                                <field name="bbd_mobile_no" readonly="1" force_save="1"
+                                       style="direction:ltr; text-align:center;"/>
+                            </group>
+                            <group>
+                                <field name="bbd_brokerage_entity_id" readonly="state in ['confirmed','unactive']"
+                                       force_save="1"
+                                       options="{'no_open': True, 'no_quick_create': True,'no_create': True}"/>
+                                <field name="bbd_brokerage_entity_Address" readonly="1" force_save="1"/>
+                                <field name="bbd_cr_no" readonly="1" force_save="1"/>
+                                <field name="bbd_fax_no" readonly="1" force_save="1"/>
+                                <field name="bbd_landline_no" readonly="1" force_save="1"
+                                       style="direction:ltr; text-align:center;"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Title Deeds Data">
+                        <group>
+                            <group>
+                                <field name="tdd_issuer" readonly="1" force_save="1"/>
+                                <field name="tdd_place_issue" string="Place of Issue" readonly="1" force_save="1"/>
+                                <field name="tdd_deed_title" readonly="1" force_save="1"/>
+                            </group>
+                            <group>
+                                <label for="tdd_issue_date_hijri"/>
+                                <div class="o_row">
+                                    <field name="tdd_issue_date" readonly="1" force_save="1"/>
+                                    <field name="tdd_issue_date_hijri" readonly="1" force_save="1"/>
+                                </div>
+                                <field name="tdd_check_number" readonly="1" force_save="1"/>
+                                <field name="tdd_check_type" readonly="1" force_save="1"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Increased Ratio %"
+                          invisible="not is_increased_rent or increased_rent_type not in ['fixed_ratio','ratio']">
+                        <field name="increase_line_ids">
+                            <list editable="bottom">
+                                <field name="date" readonly="parent.state in ['confirmed','unactive']" force_save="1"/>
+                                <field name="ratio" readonly="parent.state in ['confirmed','unactive']" force_save="1"
+                                       column_invisible="parent.increased_rent_type !='ratio'"/>
+                                <field name="fixed_amount" readonly="parent.state in ['confirmed','unactive']"
+                                       force_save="1"
+                                       column_invisible="parent.increased_rent_type !='fixed_ratio'"/>
+                                <field name="fixed_ratio" readonly="1" force_save="1"
+                                       column_invisible="parent.increased_rent_type !='fixed_ratio'"/>
+                                <field name="amount_total" column_invisible="parent.increased_rent_type !='ratio'"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Flexable Installment"
+                          invisible=" increased_rent_type != 'flexable'">
+                        <field name="flexable_installment_ids">
+                            <list editable="bottom">
+                                <field name="date" readonly="parent.state in ['confirmed','unactive']" force_save="1"/>
+                                <field name="amount" readonly="parent.state in ['confirmed','unactive']"
+                                       force_save="1"/>
+                            </list>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <!--                    <button name="action_draft" type="object"-->
+                    <!--                            invisible="state != 'confirmed'"-->
+                    <!--                            string="Reset To Draft " class="oe_highlight"-->
+                    <!--                            groups="ids_realstate_update.reset_to_draft_group"-->
+                    <!--                    />-->
+
+                    <button name="action_approve" type="object"
+                            invisible="state != 'draft'"
+                            string="Approve" class="oe_highlight"
+                            groups="ids_realstate_update.first_approve_group"
+                    />
+                    <button name="action_second_approve" type="object"
+                            invisible="state != 'approve'"
+                            string="Second Approve" class="oe_highlight"
+                            groups="ids_realstate_update.second_approve_group"
+                    />
+                    <button name="action_unactive" string="Unactive" type="object"
+                            class="oe_highlight"
+                            invisible="state != 'confirmed'"
+                            groups="ids_realstate_update.unactive_group"/>
+                    <button name="approve_unactive" string="Second Approve Unactive" type="object"
+                            class="oe_highlight"
+                            invisible="state != 'approve_unactive'"
+                            groups="ids_realstate_update.unactive_approve_group"/>
+                    <button name="final_unactive" string="Final Unactive" type="object"
+                            class="oe_highlight"
+                            invisible="state != 'second_approve_unactive'"
+                            groups="ids_realstate_update.Unactive_final_group"/>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="replace">
+                    <button name="action_confirm" string="Confirm" type="object"
+                            class="oe_highlight"
+                            invisible="state !='second_approve'"
+                            groups="ids_realstate_update.confirm_group"
+                    />
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="replace">
+                    <button name="action_cancel" string="Cancel" type="object"
+                            class="oe_highlight"
+                            invisible="state not in ['approve','second_approve']"/>
+                </xpath>
+                <xpath expr="//field[@name='address']" position="after">
+                    <field name="rud_unit_direction" readonly="1" force_save="1"/>
+                    <field name="rud_mezzanine" readonly="1" force_save="1"/>
+                    <field name="rud_special_sign_specification" readonly="1" force_save="1"/>
+                    <field name="rud_unit_length" readonly="1" force_save="1"/>
+                    <field name="issuing_authority" readonly="1" force_save="1" invisible="1"/>
+                    <field name="place_of_issue" readonly="1" force_save="1" invisible="1"/>
+                    <field name="electricity_meter_account" readonly="1" force_save="1"/>
+                    <field name="electricity_meter_location" readonly="1" force_save="1"/>
+                    <field name="document_number" readonly="1" force_save="1" invisible="1"/>
+                    <field name="rud_parking_lots_number" readonly="1" force_save="1"/>
+                    <field name="rud_sign_location" readonly="1" force_save="1"/>
+                    <field name="rud_sign_area" readonly="1" force_save="1"/>
+                    <field name="rud_ac_types" readonly="1" force_save="1"/>
+                    <field name="rud_number_of_aC_units" readonly="1" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='property_owners_id']" position="after">
+                    <label for="rud_electricity_meter_number"/>
+                    <div class="o_row">
+                        <field name="rud_electricity_meter_number" readonly="1" force_save="1"/>
+                        <span>
+                            Current Reading
+                        </span>
+                        <field name="rud_current_meter_reading" readonly="state in ['confirmed','unactive']"
+                               force_save="1"/>
+                    </div>
+                    <label for="rud_Water_meter_number"/>
+                    <div class="o_row">
+                        <field name="rud_Water_meter_number" readonly="1" force_save="1"/>
+                        <span>
+                            Current Reading
+                        </span>
+                        <field name="rud_water_current_meter_reading" readonly="state in ['confirmed','unactive']"
+                               force_save="1"/>
+                    </div>
+                    <label for="rud_gas_meter_number"/>
+                    <div class="o_row">
+                        <field name="rud_gas_meter_number" readonly="1" force_save="1"/>
+                        <span>
+                            Current Reading
+                        </span>
+                        <field name="rud_gas_current_meter_reading" readonly="state in ['confirmed','unactive']"
+                               force_save="1"/>
+                    </div>
+                    <field name="rud_unit_finishing" readonly="1" force_save="1"/>
+                    <field name="rud_furnished" readonly="1" force_save="1"/>
+                    <field name="rud_insurance_policy_number" readonly="1" force_save="1"/>
+                    <field name="analytic_account_id" readonly="1" force_save="1"/>
+
+                </xpath>
+                <xpath expr="//field[@name='no_of_floors']" position="after">
+                    <field name="units_number" readonly="1" force_save="1"/>
+                    <field name="parking_lots_number" readonly="1" force_save="1"/>
+                    <field name="property_type_id" readonly="1" force_save="1"/>
+                    <field name="property_status_id" readonly="1" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='region']" position="after">
+                    <field name="elevators_number" readonly="1" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='reservation_id']" position="after">
+                    <field name="contract_no" readonly="state in ['confirmed','unactive']" force_save="1"/>
+                    <field name="contract_type" readonly="state in ['confirmed','unactive']" force_save="1"/>
+                    <field name="payment_rental" readonly="1" force_save="1" invisible="1"/>
+                    <field name="contract_sealing_location" readonly="state in ['confirmed','unactive']"
+                           force_save="1"/>
+                    <field name="is_contract_conditional" readonly="state in ['confirmed','unactive']" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='rs_project_area']" position="after">
+                    <field name="price_per_meter" readonly="1" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='rental_fee']" position="after">
+                    <label for="rental_value_with_tax"/>
+                    <div class="o_row">
+                        <field name="tax_id" readonly="state in ['confirmed','unactive']" force_save="1"/>
+                        <field name="rental_value_with_tax" readonly="state in ['confirmed','unactive']"
+                               force_save="1"/>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="before">
+                    <field name="amount_untaxed"/>
+                    <field name="total_vat"/>
+                    <field name="total_service"/>
+                    <field name="total_service_tax"/>
+                </xpath>
+                <xpath expr="//field[@name='date_to']" position="after">
+                    <field name="is_increased_rent" readonly="state in ['confirmed','unactive']" force_save="1"/>
+                    <field name="is_second_approve" invisible="1"/>
+                    <field name="is_approve" invisible="1"/>
+                    <field name="increased_rent_type" invisible="not is_increased_rent "
+                           readonly="state in ['confirmed','unactive']"
+                           force_save="1"/>
+                    <field name="fixed_amount" invisible="not is_increased_rent or increased_rent_type !='fixed'"
+                           readonly="state in ['confirmed','unactive']" force_save="1"/>
+                    <field name="contract_down_payment_id" readonly="1" force_save="1"
+                           invisible="not contract_down_payment_id"/>
+                    <field name="credit_note_id" readonly="1" force_save="1" invisible="not credit_note_id"/>
+                    <field name="unactive_date" readonly="state=='unactive'" force_save="1"
+                           invisible="state not in ['confirmed','unactive']"/>
+                </xpath>
+                <xpath expr="//field[@name='rental_line_ids']/list/field[@name='amount']" position="after">
+                    <field name="tax_id" optional="show"/>
+                    <field name="amount_with_tax" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="rental_contract_tree_inh" model="ir.ui.view">
+            <field name="name">rental.contract.tree.view</field>
+            <field name="model">rental.contract</field>
+            <field name="inherit_id" ref="nthub_realestate.rental_contract_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='amount_total']" position="before">
+                    <field name="total_vat" optional="show"/>
+                    <field name="total_service" optional="show"/>
+                    <field name="total_service_tax" optional="show"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

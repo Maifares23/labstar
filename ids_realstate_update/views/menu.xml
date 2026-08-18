@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem name="Brokers" id="broker_menu_action" parent="nthub_realestate.partners_menu" action="broker_action"
+                  sequence="3"/>
+        <menuitem id="menu_contract_down_payment"
+              name="Contract Down Payments"
+              parent="nthub_realestate.configration_menu"
+              sequence="4"
+              action="action_contract_down_payment"/>
+
+    </data>
+</odoo>

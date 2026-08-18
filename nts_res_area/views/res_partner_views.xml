@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+                <!-- XPath 1: إضافة بعد state_id في العنوان الرئيسي -->
+                <xpath expr="//field[@name='state_id']" position="after">
+                    <field name="area_id" placeholder="Area" class="o_address_area"/>
+                    <field name="full_address" placeholder="Full Address" />
+                    <field name="additional_notes" placeholder="Additional Notes"/>
+                </xpath>
+
+                <!-- XPath 2: إضافة بعد state_id داخل child_ids form -->
+                <xpath expr="//field[@name='child_ids']//form//field[@name='state_id']" position="after">
+                <field name="area_id" placeholder="Area" class="o_address_area"/>
+                </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_payment_form_inh_rental" model="ir.ui.view">
+            <field name="name">l10n_ch.account.payment.form.inh.rental</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_post']" position="attributes">
+                    <attribute name="groups">ids_realstate_update.payment_post_group</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_draft']" position="attributes">
+                    <attribute name="groups">ids_realstate_update.payment_draft_group</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

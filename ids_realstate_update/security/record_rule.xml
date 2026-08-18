@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="multi_company_res_projects" model="ir.rule">
+            <field name="name">Multi Company Projects</field>
+            <field ref="model_rs_project" name="model_id"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record id="multi_company_units" model="ir.rule">
+            <field name="name">Multi Company Units</field>
+            <field ref="nthub_realestate.model_sub_property" name="model_id"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record id="multi_company_contract" model="ir.rule">
+            <field name="name">Multi Company contract</field>
+            <field ref="model_rental_contract" name="model_id"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record id="multi_company_contract_settlement" model="ir.rule">
+            <field name="name">Multi Company Settlement</field>
+            <field ref="model_rental_contract_line" name="model_id"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record id="multi_company_installment_template" model="ir.rule">
+            <field name="name">Multi Company Installment Template</field>
+            <field ref="nthub_realestate.model_installment_template" name="model_id"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record id="multi_company_project_type" model="ir.rule">
+            <field name="name">Multi Company Project Type</field>
+            <field ref="nthub_realestate.model_rs_project_type" name="model_id"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record id="multi_company_project_status" model="ir.rule">
+            <field name="name">Multi Company Project Status</field>
+            <field ref="nthub_realestate.model_rs_project_status" name="model_id"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record id="multi_company_project_desc" model="ir.rule">
+            <field name="name">Multi Company Project Desc</field>
+            <field ref="nthub_realestate.model_rs_project_desc" name="model_id"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record id="multi_company_regions" model="ir.rule">
+            <field name="name">Multi Company Regions</field>
+            <field ref="nthub_realestate.model_regions" name="model_id"/>
+            <field name="domain_force">
+                ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            </field>
+        </record>
+    </data>
+</odoo>

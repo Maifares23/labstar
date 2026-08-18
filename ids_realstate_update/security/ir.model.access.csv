@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_increase.ratio.line,increase.ratio.line,model_increase_ratio_line,base.group_user,1,1,1,1
+access_flexable.installment,flexable.installment,model_flexable_installment,base.group_user,1,1,1,1
+access_contract.down.payment,contract.down.payment,model_contract_down_payment,base.group_user,1,1,1,1
+access.invoice_wizard,invoice_wizard,model_invoice_wizard,base.group_user,1,1,1,1

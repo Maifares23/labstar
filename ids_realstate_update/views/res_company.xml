@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_company_view_form_inh_real_state" model="ir.ui.view">
+            <field name="name">res.company.view.form.inh.real.state</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//field[@name='company_registry']" position="attributes">-->
+<!--                    <attribute name="string">C</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='company_registry']" position="after">
+                    <field name="unified_number"/>
+                    <field name="cr_date"/>
+                    <field name="organization_type"/>
+                    <field name="cr_no"/>
+                    <field name="issued_by"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

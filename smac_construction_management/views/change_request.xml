@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="change_request_project_tree_view_id" model="ir.ui.view">
+            <field name="name">change.request.project.tree.view</field>
+            <field name="model">change.request.project</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="project_id"/>
+                    <field name="subcontractor_id"/>
+                    <field name="stage_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="change_request_project_form_view_id" model="ir.ui.view">
+            <field name="name">change.request.project.form.view</field>
+            <field name="model">change.request.project</field>
+            <field name="arch" type="xml">
+                <form string="Change Request" name="change_request">
+                    <header>
+                        <button string="Confirm" class="oe_highlight" name="action_confirm" invisible="is_hide_confirm != False" type="object"/>
+                        <field name="stage_id" widget="statusbar" options="{'clickable': '0'}"/>
+                        <field name="state" invisible="1"/>
+                    </header>
+                    
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"  placeholder="Change Request Name"  readonly="is_hide_confirm != False"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="is_hide_confirm" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="code" readonly="is_hide_confirm != False"/>
+                                <field name="contract_project_id" readonly="is_hide_confirm != False"/>
+                                <field name="project_id" readonly="is_hide_confirm != False"/>
+                                <field name="subcontractor_id" readonly="is_hide_confirm != False"/>
+                                <field name="work_type" readonly="is_hide_confirm != False"/>
+                                <field name="disciplines_id"
+                                       options="{'no_quick_create': True, 'no_create_edit': True}" readonly="is_hide_confirm != False"/>
+                                <field name="description_custom" readonly="is_hide_confirm != False"/>
+                                <field name="open_end_contract" widget="boolean_toggle" readonly="is_hide_confirm != False"/>
+                                <field name="open_cost_contract" widget="boolean_toggle" readonly="is_hide_confirm != False"/>
+                                <field name="contract_duration" readonly="open_end_contract != False" required="open_end_contract == False"/>
+                                <field name="contract_payment_duration" readonly="is_hide_confirm != False"/>
+                            </group>
+                            <group>
+                                <field name="is_get_data" invisible="1"/>
+                                <field name="is_time" readonly="is_hide_confirm != False"/>
+                                <field name="is_quantity" readonly="is_hide_confirm != False"/>
+                                <field name="is_price" readonly="is_hide_confirm != False"/>
+                                <field name="is_scope" readonly="is_hide_confirm != False"/>
+                                <field name="is_other" readonly="is_hide_confirm != False"/>
+                                <field name="contract_date" readonly="is_hide_confirm != False"/>
+                                <label for="date_from" string="change.request Period"/>
+                                <div class="w-100">
+                                    <div class="o_row">
+                                        <field name="date_from" widget="daterange"
+                                               options="{'related_end_date': 'date_to'}" readonly="is_hide_confirm != False"/>
+                                        <i class="fa fa-long-arrow-right mx-2 oe_edit_only" aria-label="Arrow icon"
+                                           title="Arrow"/>
+
+                                        <field name="date_to" widget="daterange"
+                                               options="{'related_start_date': 'date_from'}"
+                                         readonly="is_hide_confirm != False"/>
+                                    </div>
+                                </div>
+                                <field name="contract_duration"
+                                       readonly="open_end_contract != False" required="open_end_contract == False" />
+                                <field name="contract_payment_duration" readonly="is_hide_confirm != False"/>
+                                <field name="workflow_id"  force_save="1"  readonly="is_hide_confirm != False"/>
+                                <field name="date_confirm_stage" invisible="1"/>
+                                <field name="due_days" invisible="1"/>
+                                <field name="num_days" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="contract_project_ids" string="Items">
+                                <field name="contract_project_ids" widget="section_and_note_one2many"
+                                       context="{'default_company_id': company_id, 'default_currency_id': currency_id}" readonly="is_hide_confirm != False">
+
+                                    <list editable="bottom">
+                                        <control>
+                                            <create name="add_line_control" string="Add a line"/>
+                                            <create name="add_section_control" string="Add a section"
+                                                    context="{'default_display_type': 'line_section'}"/>
+                                            <create name="add_note_control" string="Add a note"
+                                                    context="{'default_display_type': 'line_note'}"/>
+                                        </control>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="display_type" invisible="1"/>
+                                        <field name="item_id"/>
+                                        <field name="name"/>
+                                        <field name="work_type"/>
+                                        <field name="work_package_id"/>
+                                        <field name="quantity" sum="Total"/>
+                                        <field name="unit_price" sum="Total"/>
+                                        <field name="uom_id"/>
+                                        <field name="tax_ids" widget="many2many_tags"/>
+                                        <field name="untaxed_amount" sum="Total"/>
+                                        <field name="amount_tax" sum="Total" invisible="1"/>
+                                        <field name="total_amount" sum="Total" invisible="1"/>
+                                        <field name="contract_project_id" invisible="1"/>
+                                        <field name="contract_project_line_id" invisible="1"/>
+                                        <button name="view_sub_line_pop_up" type="object" icon="fa-list"/>
+
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--                        <field name="activity_ids" widget="mail_activity"/>-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                    </div>-->
+                </form>
+            </field>
+        </record>
+
+
+        <record id="change_request_project_action_id" model="ir.actions.act_window">
+            <field name="name">Change Request Project</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">change.request.project</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="change_request_project_menu_id" name="Change Request"
+                  parent="smac_construction_management.configuration_menu_id" action="change_request_project_action_id"
+                  sequence="1"/>
+
+<!--        #############################################################-->
+        <record id="change_request_project_line_form_view_id" model="ir.ui.view">
+            <field name="name">change.request.project.line.form.view</field>
+            <field name="model">change.request.project.line</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="item_id"/>
+                                <field name="name"/>
+                                <field name="work_type"/>
+                                <field name="work_package_id"/>
+                                <field name="quantity" sum="Total"/>
+                                <field name="unit_price" sum="Total"/>
+                            </group>
+                            <group>
+                                <field name="uom_id"/>
+                                <field name="tax_ids" widget="many2many_tags"/>
+                                <field name="untaxed_amount" sum="Total"/>
+                                <field name="amount_tax" sum="Total"/>
+                                <field name="total_amount" sum="Total"/>
+                                <field name="contract_project_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="project_sub_line_ids" string="Sub Items">
+                                <field name="project_sub_line_ids" widget="section_and_note_one2many"
+                                       context="{'default_company_id': company_id, 'default_currency_id': currency_id}">
+                                    <list editable="bottom">
+                                        <control>
+                                            <create name="add_line_control" string="Add a line"/>
+                                            <create name="add_section_control" string="Add a section"
+                                                    context="{'default_display_type': 'line_section'}"/>
+                                            <create name="add_note_control" string="Add a note"
+                                                    context="{'default_display_type': 'line_note'}"/>
+                                        </control>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="display_type" invisible="1"/>
+                                        <field name="item_id"/>
+                                        <field name="name"/>
+                                        <field name="work_type"/>
+                                        <field name="work_package_id"/>
+                                        <field name="quantity" sum="Total"/>
+                                        <field name="unit_price" sum="Total"/>
+                                        <field name="uom_id"/>
+                                        <field name="tax_ids" widget="many2many_tags"/>
+                                        <field name="untaxed_amount" sum="Total"/>
+                                        <field name="amount_tax" sum="Total" invisible="1"/>
+                                        <field name="total_amount" sum="Total" invisible="1"/>
+                                        <field name="contract_line_id" invisible="1"/>
+                                        <field name="contract_project_sub_line_id" invisible="1"/>
+
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--                        <field name="activity_ids" widget="mail_activity"/>-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                    </div>-->
+                </form>
+            </field>
+        </record>
+
+        <record id="change_request_project_line_tree_view_id" model="ir.ui.view">
+            <field name="name">change.request.project.line.tree.view</field>
+            <field name="model">change.request.project.line</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+
+    </data>
+</odoo>

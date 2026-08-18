@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="items_form_view_id" model="ir.ui.view">
+            <field name="name">items.form.view</field>
+            <field name="model">items</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--                        <field name="activity_ids" widget="mail_activity"/>-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                    </div>-->
+                </form>
+            </field>
+        </record>
+
+        <record id="items_tree_view_id" model="ir.ui.view">
+            <field name="name">items.tree.view</field>
+            <field name="model">items</field>
+            <field name="arch" type="xml">
+                <list string="" editable="bottom">
+                    <field name="name"/>
+
+                </list>
+            </field>
+        </record>
+
+        <record id="items_action_id" model="ir.actions.act_window">
+            <field name="name">Items</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">items</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="items_menu_id" name="Items" parent="smac_construction_management.configuration_menu_id"
+                  action="items_action_id" sequence="5"/>
+
+    </data>
+</odoo>
