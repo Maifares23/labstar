@@ -5,14 +5,14 @@
             <img src="/sales_invoice_footer/static/src/img/bank_icon.png" style="height: 26px; margin-right: 8px; flex-shrink: 0;"/>
             <div>
                 <div style="font-weight: bold; font-size: 12px; margin-bottom: 2px;">BANK ACCOUNT DETAILS:</div>
-                <table style="border-collapse: collapse;">
+                <table style="border-collapse: collapse; border: none;">
                     <tr>
-                        <td style="padding-right: 28px; white-space: nowrap; vertical-align: top;">
+                        <td style="padding-right: 28px; white-space: nowrap; vertical-align: top; border: none;">
                             <div t-if="bank.bank_id.name"><strong>Bank:</strong> <span t-esc="bank.bank_id.name"/></div>
                             <div><strong>Title:</strong> <span t-esc="bank.acc_holder_name or bank.partner_id.name"/></div>
                             <div><strong>A/C No:</strong> <span t-esc="bank.acc_number"/></div>
                         </td>
-                        <td style="white-space: nowrap; vertical-align: top;">
+                        <td style="white-space: nowrap; vertical-align: top; border: none;">
                             <div t-if="bank.iban_number"><strong>IBAN:</strong> <span t-esc="bank.iban_number"/></div>
                             <div t-if="bank.bank_bic"><strong>SWIFT:</strong> <span t-esc="bank.bank_bic"/></div>
                         </td>
