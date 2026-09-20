@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_bank_footer">
-        <div t-if="bank" class="sif_bank_footer" style="font-size: 11px; line-height: 1.5; display: inline-block; max-width: 260px; border: none; margin-bottom: 12px;">
+        <div t-if="bank" class="sif_bank_footer" style="font-size: 11px; line-height: 1.5; display: inline-block; max-width: 260px; border: none; margin-bottom: 30px;">
             <img src="/sales_invoice_footer/static/src/img/bank_icon.png" style="width: 100%; max-width: 180px; display: block; margin-bottom: 3px; border: none;"/>
             <div>
                 <div style="font-weight: bold; font-size: 12px;">BANK ACCOUNT DETAILS:-</div>
