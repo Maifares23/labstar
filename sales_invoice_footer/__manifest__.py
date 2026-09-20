@@ -2,7 +2,7 @@
 {
     "name": "Sales & Invoice Bank Footer",
     "summary": "Adds the company bank account details to the footer of Sale Order and Invoice reports",
-    "version": "19.0.1.4.0",
+    "version": "19.0.1.5.0",
     "category": "Accounting/Accounting",
     "author": "Ahmed Ali",
     "license": "LGPL-3",
@@ -17,4 +17,5 @@
     "installable": True,
     "application": False,
     "auto_install": False,
+    "post_init_hook": "_post_init_set_paperformat",
 }
