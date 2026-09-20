@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_bank_footer">
-        <div t-if="bank" class="sif_bank_footer d-flex align-items-start" style="font-size: 11px; line-height: 1.5;">
-            <img src="/sales_invoice_footer/static/src/img/bank_icon.png" style="height: 26px; margin-right: 8px; flex-shrink: 0;"/>
+        <div t-if="bank" class="sif_bank_footer" style="font-size: 11px; line-height: 1.5;">
+            <img src="/sales_invoice_footer/static/src/img/bank_icon.png" style="width: 110px; margin-bottom: 3px;"/>
             <div>
                 <div style="font-weight: bold; font-size: 12px;">BANK ACCOUNT DETAILS:-</div>
                 <div t-if="bank.bank_id.name"><strong>BANK NAME:</strong> <span t-esc="bank.bank_id.name"/></div>
