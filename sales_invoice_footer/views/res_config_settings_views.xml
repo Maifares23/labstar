@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_sales_invoice_footer" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sales.invoice.footer</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <setting id="use_invoice_terms" position="after">
+                <setting id="bank_details_footer" company_dependent="1"
+                    help="Print your company's bank account details at the bottom of the Sale Order and Invoice PDF reports">
+                    <field name="footer_bank_account_id"/>
+                    <div class="content-group" invisible="not footer_bank_account_id">
+                        <div class="mt8">
+                            <field name="show_bank_footer_on_sale_order" class="oe_inline"/>
+                            <label for="show_bank_footer_on_sale_order" string="Show on Sale Orders"/>
+                        </div>
+                        <div class="mt4">
+                            <field name="show_bank_footer_on_invoice" class="oe_inline"/>
+                            <label for="show_bank_footer_on_invoice" string="Show on Invoices"/>
+                        </div>
+                    </div>
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>

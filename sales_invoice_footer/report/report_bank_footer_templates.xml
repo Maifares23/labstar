@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_bank_footer">
+        <div t-if="bank" class="sif_bank_footer" style="margin-top: 20px; padding-top: 10px; border-top: 1px solid #cccccc; font-size: 11px;">
+            <p style="font-weight: bold; margin-bottom: 4px;">BANK ACCOUNT DETAILS:-</p>
+            <p t-if="bank.bank_id.name" style="margin: 0;">BANK NAME: <span t-esc="bank.bank_id.name"/></p>
+            <p style="margin: 0;">ACCOUNT TITLE: <span t-esc="bank.acc_holder_name or bank.partner_id.name"/></p>
+            <p style="margin: 0;">ACCOUNT NUMBER: <span t-esc="bank.acc_number"/></p>
+            <p t-if="bank.iban_number" style="margin: 0;">IBAN NUMBER: <span t-esc="bank.iban_number"/></p>
+            <p t-if="bank.bank_bic" style="margin: 0;">SWIFT CODE: <span t-esc="bank.bank_bic"/></p>
+        </div>
+    </template>
+</odoo>
