@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_bank_footer">
-        <div t-if="bank" class="sif_bank_footer" style="margin-top: 24px; padding-top: 12px; border-top: 1px solid #cccccc;">
-            <img src="/sales_invoice_footer/static/src/img/bank_icon.png" style="height: 34px; margin-bottom: 6px;"/>
-            <div style="font-size: 11px; line-height: 1.5;">
-                <div style="font-weight: bold; font-size: 12px; letter-spacing: .3px; margin-bottom: 3px;">BANK ACCOUNT DETAILS:-</div>
-                <div t-if="bank.bank_id.name"><span style="font-weight: bold;">BANK NAME:</span> <span t-esc="bank.bank_id.name"/></div>
-                <div><span style="font-weight: bold;">ACCOUNT TITLE:</span> <span t-esc="bank.acc_holder_name or bank.partner_id.name"/></div>
-                <div><span style="font-weight: bold;">ACCOUNT NUMBER:</span> <span t-esc="bank.acc_number"/></div>
-                <div t-if="bank.iban_number"><span style="font-weight: bold;">IBAN NUMBER:</span> <span t-esc="bank.iban_number"/></div>
-                <div t-if="bank.bank_bic"><span style="font-weight: bold;">SWIFT CODE:</span> <span t-esc="bank.bank_bic"/></div>
+        <div t-if="bank" class="sif_bank_footer d-flex align-items-start mb-1" style="font-size: 9px; line-height: 1.4;">
+            <img src="/sales_invoice_footer/static/src/img/bank_icon.png" style="height: 20px; margin-right: 6px;"/>
+            <div>
+                <div>
+                    <strong>BANK ACCOUNT DETAILS:</strong>
+                    <t t-if="bank.bank_id.name"> <strong>Bank:</strong> <span t-esc="bank.bank_id.name"/> |</t>
+                    <strong>Title:</strong> <span t-esc="bank.acc_holder_name or bank.partner_id.name"/> |
+                    <strong>A/C No:</strong> <span t-esc="bank.acc_number"/>
+                </div>
+                <div>
+                    <t t-if="bank.iban_number"><strong>IBAN:</strong> <span t-esc="bank.iban_number"/></t>
+                    <t t-if="bank.bank_bic"> | <strong>SWIFT:</strong> <span t-esc="bank.bank_bic"/></t>
+                </div>
             </div>
         </div>
     </template>

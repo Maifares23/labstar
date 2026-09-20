@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="external_layout_standard_inherit" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[hasclass('o_footer_content')]" position="before">
+            <t t-set="sif_show_bank_footer"
+               t-value="o and (
+                    (o._name == 'sale.order' and o.company_id.show_bank_footer_on_sale_order)
+                    or (o._name == 'account.move' and o.company_id.show_bank_footer_on_invoice)
+                )"/>
+            <t t-if="sif_show_bank_footer" t-call="sales_invoice_footer.report_bank_footer">
+                <t t-set="bank" t-value="o.company_id.footer_bank_account_id"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>
