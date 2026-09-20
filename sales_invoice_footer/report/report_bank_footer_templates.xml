@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_bank_footer">
-        <table t-if="bank" class="sif_bank_footer" style="font-size: 11px; line-height: 1.5; border-collapse: collapse; border: none; max-width: 260px;">
-            <tr>
-                <td style="border: none; padding: 0;">
-                    <img src="/sales_invoice_footer/static/src/img/bank_icon.png" style="width: 100%; max-width: 180px; display: block; margin-bottom: 3px;"/>
-                </td>
-            </tr>
-            <tr>
-                <td style="border: none; padding: 0;">
-                    <div style="font-weight: bold; font-size: 12px;">BANK ACCOUNT DETAILS:-</div>
-                    <div t-if="bank.bank_id.name"><strong>BANK NAME:</strong> <span t-esc="bank.bank_id.name"/></div>
-                    <div><strong>ACCOUNT TITLE:</strong> <span t-esc="bank.acc_holder_name or bank.partner_id.name"/></div>
-                    <div><strong>ACCOUNT NUMBER:</strong> <span t-esc="bank.acc_number"/></div>
-                    <div t-if="bank.iban_number"><strong>IBAN NUMBER:</strong> <span t-esc="bank.iban_number"/></div>
-                    <div t-if="bank.bank_bic"><strong>SWIFT CODE:</strong> <span t-esc="bank.bank_bic"/></div>
-                </td>
-            </tr>
-        </table>
+        <div t-if="bank" class="sif_bank_footer" style="font-size: 11px; line-height: 1.5; display: inline-block; max-width: 260px; border: none;">
+            <img src="/sales_invoice_footer/static/src/img/bank_icon.png" style="width: 100%; max-width: 180px; display: block; margin-bottom: 3px; border: none;"/>
+            <div>
+                <div style="font-weight: bold; font-size: 12px;">BANK ACCOUNT DETAILS:-</div>
+                <div t-if="bank.bank_id.name"><strong>BANK NAME:</strong> <span t-esc="bank.bank_id.name"/></div>
+                <div><strong>ACCOUNT TITLE:</strong> <span t-esc="bank.acc_holder_name or bank.partner_id.name"/></div>
+                <div><strong>ACCOUNT NUMBER:</strong> <span t-esc="bank.acc_number"/></div>
+                <div t-if="bank.iban_number"><strong>IBAN NUMBER:</strong> <span t-esc="bank.iban_number"/></div>
+                <div t-if="bank.bank_bic"><strong>SWIFT CODE:</strong> <span t-esc="bank.bank_bic"/></div>
+            </div>
+        </div>
     </template>
 </odoo>
